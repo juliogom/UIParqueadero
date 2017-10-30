@@ -1,0 +1,14 @@
+
+<div class="card-columns">
+
+  <div class="card animated fadeIn fast" *ngFor="let vehiculo of vehiculosPrueba; let i=index" style="width: 20rem;">
+
+    <div class="card-block">
+      <h4 class="card-title">{{vehiculo.id}}</h4>
+      <p class="card-text">{{vehiculo.placa}}</p>
+      <a [routerLink]="['vehiculo',i]" class="btn btn-outline-primary">Go somewhere</a>
+    </div>
+
+  </div>
+
+</div>
