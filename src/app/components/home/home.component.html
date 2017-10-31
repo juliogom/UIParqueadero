@@ -1,3 +1,31 @@
-<p>
-  home works!
-</p>
+
+<div class="container">
+  <h2>Lista de los vehiculos activos en el parqueadero</h2>
+  <p></p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>NOMBRE</th>
+        <th>PLACA</th>
+        <th>Fecha Ingreso</th>
+        <th>VALOR HORA</th>
+        <th>TIPO</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let actividad of actividades; let i=index " >
+
+        <td>{{actividad.vehiculo.id}}</td>
+        <td>{{actividad.vehiculo.nombre}}</td>
+        <td>{{actividad.vehiculo.placa}}</td>
+        <td>{{actividad.fechaInicio | date:'medium'}}</td>
+        <td>{{actividad.servicio.precio}}</td>
+        <td>{{actividad.vehiculo.tipoVehiculo.nombre}}</td>
+        <td><button type="button" class="btn btn-primary">Marcar Salida</button></td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>

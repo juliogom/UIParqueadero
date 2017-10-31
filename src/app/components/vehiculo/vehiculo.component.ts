@@ -8,6 +8,7 @@ import {VehiculosService,Vehiculo} from '../../servicios/vehiculos.service';
   selector: 'app-vehiculo',
   templateUrl: './vehiculo.component.html'
 })
+
 export class VehiculoComponent {
 
   vehiculo:any={};

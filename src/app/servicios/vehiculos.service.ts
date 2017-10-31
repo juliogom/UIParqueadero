@@ -5,37 +5,20 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class VehiculosService {
 
-  private vehiculos:Vehiculo []=[
-    { id: 1,
-    	nombre:"FERR",
-    	modelo:2016,
-    	placa:"AHZ-116",
-    	color:"Rojo",
-    },
-    { id: 2,
-    	nombre:"Mazda",
-    	modelo:2016,
-    	placa:"R3F-116",
-    	color:"Azul",
-    },
-    { id: 3,
-    	nombre:"Toyota",
-    	modelo:2017,
-    	placa:"ATR-576",
-    	color:"Gris",
-    }
-  ];
+  private vehiculos:any[]=[];
 
   constructor( private http: Http) {
-    console.log('Servicio losto para usar');
+
+    this.http.get('http://localhost:8082/parqueadero/vehiculos').map((res:Response) => res.json())
+    .subscribe(dataVehiculos => {
+      this.vehiculos=dataVehiculos;
+      console.log(dataVehiculos);
+      //Console.log(this.vehiculos.vehiculo);
+    });
   }
 
-  getVehiculos():Vehiculo[]{
+  getVehiculos(){
     return this.vehiculos;
-  }
-
-  getPrueba(){
-        return this.http.get('http://localhost:8082/parqueadero/vehiculos').map((res:Response) => res.json());
   }
 
   getVehiculo(index:number){
