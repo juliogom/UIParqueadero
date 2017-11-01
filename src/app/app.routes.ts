@@ -6,7 +6,7 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { NuevoUsuarioComponent } from './components/usuario/nuevo-usuario/nuevo-usuario.component';
 
-const APP_ROUTES: Routes = [
+const app_routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'vehiculos', component: VehiculosComponent },
   { path: 'vehiculos/vehiculo/:id', component: VehiculoComponent },
@@ -16,4 +16,4 @@ const APP_ROUTES: Routes = [
   { path: '**', pathMatch: 'full', redirectTo: 'home' }
 ];
 
-export const APP_ROUTING = RouterModule.forRoot(APP_ROUTES);
+export const app_routing = RouterModule.forRoot(app_routes);

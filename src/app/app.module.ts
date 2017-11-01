@@ -4,7 +4,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 //Rutas
-import { APP_ROUTING } from './app.routes';
+import { app_routing } from './app.routes';
 //Servicios
 import { VehiculosService } from "./servicios/vehiculos.service";
 
@@ -33,7 +33,7 @@ import { NuevoUsuarioComponent } from './components/usuario/nuevo-usuario/nuevo-
   ],
   imports: [
     BrowserModule,
-    APP_ROUTING,
+    app_routing,
     HttpModule,
     FormsModule,
     ReactiveFormsModule
