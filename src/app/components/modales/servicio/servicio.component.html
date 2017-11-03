@@ -1,0 +1,72 @@
+      <!-- Modal -->
+       <div class="modal fade" id="myModal" role="dialog">
+         <div class="modal-dialog">
+
+           <!-- Modal content-->
+           <div class="modal-content">
+
+             <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4 class="modal-title">Modal Header</h4>
+             </div>
+
+             <div class="modal-body">
+               <form [formGroup]="forma" (ngSubmit)="guardarUsuario()">
+
+                 <div class="form-group">
+                   <div class="row ">
+                      <div class="col-sm-2">
+                       <label for="usuario">Usuario</label>
+                     </div>
+                        <div class="col-sm-6">
+                           <input type="text" class="form-control" id="usuario" placeholder="usuario" formControlName="usuario">
+                        </div>
+
+                       <div class="col-sm-4">
+                         <button type="button" class="btn btn-default" data-dismiss="modal">Buscar</button>
+                       </div>
+                   </div>
+                 </div>
+
+                 <div class="form-group">
+                   <div class="row ">
+                      <div class="col-sm-2">
+                        <label for="vehiculo">Vehiculo</label>
+                      </div>
+
+                      <div class="col-sm-6">
+                         <input type="text" class="form-control" id="vehiculo" placeholder="vehiculo" formControlName="vehiculo">
+                      </div>
+
+                      <div class="col-sm-4">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Buscar</button>
+                      </div>
+
+                    </div>
+                 </div>
+
+                  <div class="container">
+
+                   <div class="form-group row">
+                     <div class="col-xs-2">
+                      <label for="horaEntrada">Hora Entrada</label>
+                      <input type="time" class="form-control" id="horaEntrada" placeholder="12:00" formControlName="horaEntrada">
+                    </div>
+                   </div>
+
+                 </div>
+
+                 <div class="form-group"></div>
+                  <button type="submit" class="btn btn-success">Registrar entrada</button>
+               </form>
+
+             </div>
+
+             <div class="modal-footer">
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+             </div>
+
+           </div>
+
+         </div>
+       </div>

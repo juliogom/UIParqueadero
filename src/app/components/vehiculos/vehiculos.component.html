@@ -2,7 +2,9 @@
 <div class="card-columns">
 
   <div class="card animated fadeIn fast" *ngFor="let vehiculo of vehiculos; let i=index" style="width: 20rem;">
-
+    <div with="32" height="32">
+      <img class="card-img-top" src="../../assets/images/Car.ico" alt="Car image">
+    </div>
     <div class="card-block">
       <h4 class="card-title">{{vehiculo.id}}</h4>
       <p class="card-text">{{vehiculo.estado}}</p>
@@ -10,5 +12,4 @@
     </div>
 
   </div>
-
 </div>

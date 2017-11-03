@@ -7,6 +7,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { app_routing } from './app.routes';
 //Servicios
 import { VehiculosService } from "./servicios/vehiculos.service";
+import { ModalService } from './servicios/modal.service';
 
 //Componentes
 import { AppComponent } from './app.component';
@@ -18,6 +19,7 @@ import { VehiculoComponent } from './components/vehiculo/vehiculo.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { NuevoUsuarioComponent } from './components/usuario/nuevo-usuario/nuevo-usuario.component';
+import { ServicioComponent } from './components/modales/servicio/servicio.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { NuevoUsuarioComponent } from './components/usuario/nuevo-usuario/nuevo-
     VehiculoComponent,
     UsuariosComponent,
     UsuarioComponent,
-    NuevoUsuarioComponent
+    NuevoUsuarioComponent,
+    ServicioComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,7 @@ import { NuevoUsuarioComponent } from './components/usuario/nuevo-usuario/nuevo-
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [VehiculosService],
+  providers: [VehiculosService,ModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
