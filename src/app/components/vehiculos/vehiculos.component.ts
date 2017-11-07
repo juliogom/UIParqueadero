@@ -13,7 +13,9 @@ export class VehiculosComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.vehiculos=this._vehiculosServicios.getVehiculos();
+    this._vehiculosServicios.getVehiculos().subscribe(dataVehiculos => {
+      this.vehiculos=dataVehiculos;
+    });
   }
 
 }

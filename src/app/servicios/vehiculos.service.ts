@@ -8,25 +8,12 @@ export class VehiculosService {
   private vehiculosActivos:any[]=[];
   private vehiculos:any[]=[];
 
-
   constructor( private http: Http) {
-
-    this.http.get('http://localhost:8082/parqueadero/vehiculos').map((res:Response) => res.json())
-    .subscribe(dataVehiculosActivos => {
-      this.vehiculosActivos=dataVehiculosActivos;
-      console.log(dataVehiculosActivos);
-    });
-
-    this.http.get('http://localhost:8082/vehiculos').map((respuesta:Response) => respuesta.json())
-    .subscribe(dataVehiculos => {
-      this.vehiculos=dataVehiculos;
-      console.log(dataVehiculos);
-    });
-
   }
 
   getVehiculos(){
-      return this.vehiculos;
+      return this.http.get('http://localhost:8082/vehiculos').map(respuesta => respuesta.json());
+
   }
 
   getVehiculo(index:number){
@@ -34,6 +21,11 @@ export class VehiculosService {
   }
 
   getVehiculosActivos(){
+    this.http.get('http://localhost:8082/parqueadero/vehiculos').map(res => res.json())
+    .subscribe(vehiculosActivos =>{
+      this.vehiculosActivos=vehiculosActivos;
+    });
+
     return this.vehiculosActivos;
   }
 

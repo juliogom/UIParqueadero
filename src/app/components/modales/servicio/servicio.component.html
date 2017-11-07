@@ -11,22 +11,39 @@
              </div>
 
              <div class="modal-body">
-               <form [formGroup]="forma" (ngSubmit)="guardarUsuario()">
+
+               <form [formGroup]="forma" (ngSubmit)="guardarEntrada()">
 
                  <div class="form-group">
                    <div class="row ">
                       <div class="col-sm-2">
-                       <label for="usuario">Usuario</label>
+                       <label for="usuario">Cedula Usuario</label>
                      </div>
                         <div class="col-sm-6">
-                           <input type="text" class="form-control" id="usuario" placeholder="usuario" formControlName="usuario">
+                           <input type="text" class="form-control" id="usuario" placeholder="usuario" formControlName="usuario"  [(ngModel)]="queryBuscador" (keyup)="filter()">
                         </div>
 
                        <div class="col-sm-4">
                          <button type="button" class="btn btn-default" data-dismiss="modal">Buscar</button>
                        </div>
                    </div>
+
+                  <div [hidden]="btnCrearNuevoUsuario" >
+                    <button type="button" class="btn btn-danger">Crear Usuario</button>
+                  </div>
+
                  </div>
+
+                <div class="form-group">
+                  <div class="suggestions" *ngIf="filteredList.length > 0">
+                    <div class="radio" *ngFor="let usuarioFiltrado of filteredList">
+                      <label >
+                        <input type="radio" name="optradio" (click)="select(usuarioFiltrado)">
+                        {{usuarioFiltrado.cedula}}  / {{usuarioFiltrado.nombre}} {{usuarioFiltrado.apellido}}
+                      </label>
+                    </div>
+                  </div>
+                </div>
 
                  <div class="form-group">
                    <div class="row ">
@@ -35,14 +52,26 @@
                       </div>
 
                       <div class="col-sm-6">
-                         <input type="text" class="form-control" id="vehiculo" placeholder="vehiculo" formControlName="vehiculo">
+                         <input type="text" class="form-control" id="vehiculo" placeholder="vehiculo" formControlName="vehiculo" [(ngModel)]="queryVehiculos" (keyup)="filterVehiculos()">
                       </div>
+
 
                       <div class="col-sm-4">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Buscar</button>
                       </div>
 
                     </div>
+                 </div>
+
+                 <div class="form-group">
+                   <div class="suggestions" *ngIf="filteredListVehiculos.length > 0">
+                     <div class="radio" *ngFor="let vehiculoFiltrado of filteredListVehiculos">
+                       <label >
+                         <input type="radio" name="optradio" (click)="selectVehiculo(vehiculoFiltrado)">
+                         {{vehiculoFiltrado.nombre}}  / {{vehiculoFiltrado.placa}} {{vehiculoFiltrado.tipoVehiculo.id}}
+                       </label>
+                     </div>
+                   </div>
                  </div>
 
                   <div class="container">
@@ -53,6 +82,18 @@
                       <input type="time" class="form-control" id="horaEntrada" placeholder="12:00" formControlName="horaEntrada">
                     </div>
                    </div>
+
+                 </div>
+
+                 <div class="form-group">
+
+                   <div class="radio" style="padding: 20px 0; border-bottom: 1px solid #ccc;">
+              				<h2>Slots para el tipo de vehiculo seleccionado</h2>
+                      <div *ngFor="let slotipo of slotstipo" >
+                				<input type="radio" name="slot" [disabled]="!slotipo.ocupado" >
+                				<label for="slot" [ngStyle]="{'color': getFont(slotipo)} "> {{slotipo.numero}} / {{slotipo.nombre}}</label>
+                      </div>
+              			</div>
 
                  </div>
 
