@@ -1,4 +1,5 @@
 import {TipoVehiculo} from './TipoVehiculo';
+import { Usuario } from './Usuario'
 
 export class Vehiculo {
 
@@ -7,13 +8,15 @@ export class Vehiculo {
   private modelo:number;
   private placa:string;
   private tipoVehiculo:TipoVehiculo;
+  private cliente:Usuario;
 
-  constructor(nombre:string,color:string,modelo:number,placa:string,tipoVehiculo:TipoVehiculo) {
+  constructor(nombre:string,color:string,modelo:number,placa:string,tipoVehiculo:TipoVehiculo,usuario:Usuario) {
     this.nombre=nombre;
     this.color=color;
     this.modelo=modelo;
     this.placa=placa;
     this.tipoVehiculo=tipoVehiculo;
+    this.cliente=usuario;
   }
 
   public getNombre():string{
@@ -40,4 +43,11 @@ export class Vehiculo {
   this.tipoVehiculo=tipoVehiculo;
   }
 
+  getCliente():Usuario{
+    return this.cliente;
+  }
+
+  setCliente(cliente:Usuario){
+    this.cliente=cliente;
+  }
 }

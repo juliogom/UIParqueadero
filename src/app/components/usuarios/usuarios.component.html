@@ -1,7 +1,21 @@
+
 <p>
-  usuarios works!
-
 <button (click)="crearUsuario()" type="button" class="btn btn-primary">Crear Usuario</button>
-
-
 </p>
+
+
+<h1>Listado de usuarios del parqueadero</h1>
+
+<div class="card-columns">
+
+  <div class="card animated fadeIn fast" *ngFor="let usuario of usuarios; let i=index" style="width: 20rem;">
+
+
+    <div class="card-block">
+      <h4 class="card-title">{{usuario.id}}</h4>
+      <p class="card-text">{{usuario.nombre}} {{usuario.apellido}}</p>
+      <a [routerLink]="['usuario',i]" class="btn btn-outline-primary">Ver Usuario</a>
+    </div>
+
+  </div>
+</div>

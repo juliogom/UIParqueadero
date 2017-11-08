@@ -2,6 +2,8 @@ import { Component,Input, OnInit} from '@angular/core';
 import { Injectable } from '@angular/core';
 import { ModalService } from '../../../servicios/modal.service';
 import {FormGroup,FormControl,Validators} from '@angular/forms';
+import { NguiDatetimePickerModule, NguiDatetime } from '@ngui/datetime-picker';
+
 import { Vehiculo } from '../../../modelo/Vehiculo'
 import { Usuario } from '../../../modelo/Usuario'
 import { UsuariosService } from '../../../servicios/Usuarios.service'
@@ -36,6 +38,11 @@ export class ServicioComponent implements OnInit {
   abierto=false;
 
   public actividad:Actividad;
+  public usuarioServicio:Usuario;
+
+  servicioGenerico:any;
+
+  date2:Date ;
 
   constructor(public servicioModal:ModalService,public servicioUsuarios:UsuariosService,
     public servicioVehiculos:VehiculosService, servicioSlot:SlotService) {
@@ -45,11 +52,15 @@ export class ServicioComponent implements OnInit {
     this.slots=[];
     this.slotstipo=[];
     this.actividad=new Actividad();
+    this.usuarioServicio=null;
+    this.servicioGenerico={id:0,detalle:"",nombre:"",precio:0};
+    this.date2=new Date("Thu Jan 01 2015 00:00:00 GMT-0500 (EST)");
 
     this.forma =new FormGroup({
       'usuario':new FormControl('',Validators.required),
       'vehiculo':new FormControl('',Validators.required),
-      'horaEntrada':new FormControl('',Validators.required)
+      'horaEntrada':new FormControl('',Validators.required),
+      'fecha': new FormControl(this.date2)
     });
 
   servicioUsuarios.usuarios.subscribe(usuarios=> this.usuarios = usuarios);
@@ -62,6 +73,7 @@ export class ServicioComponent implements OnInit {
     this.servicioModal.registrarModal(this,0);
     this.slotstipo=this.slots;
     //this.filteredList = this.usuarios;
+
   }
 
   filter() {
@@ -99,25 +111,37 @@ select(item){
     this.filteredList = [];
     this.btnCrearNuevoUsuario=true;
 
+    this.usuarioServicio=item;
     //console.log(this.forma['usuario']);
 }
 
 selectVehiculo(item){
+
   this.queryVehiculos=item.nombre;
   this.filteredListVehiculos=[];
   this.btnCrearVehiculo=true;
+
+  item.cliente=this.usuarioServicio;
+
+  if(item.tipoVehiculo.id == 1){
+    this.servicioGenerico={id:1,datalle:"SERVICIO PARQUEO CARRO",nombre:"PARQUEO CARRO",preio:1000};
+  }else{
+    this.servicioGenerico={id:2,datalle:"SERVICIO PARQUEO MOTO",nombre:"PARQUEO MOTO",preio:500};
+  }
+
   this.actividad.setVehiculo(item);
+  this.actividad.setServicio(this.servicioGenerico);
 
   this.slotstipo=this.slots.filter(function(el){
-    //console.log(this.actividad.getVehiculo().tipoVehiculo.id);
-    //console.log(el.tipoVehiculo.id);
-      return el.tipoVehiculo.id == this.actividad.getVehiculo().tipoVehiculo.id;
+
+    return el.tipoVehiculo.id == this.actividad.getVehiculo().tipoVehiculo.id;
 
   }.bind(this));
 
 }
 
 close(abierto = false): void {
+  this.actividad=null;
    //this.servicioModal.close(this.modalId, checkBlocking);
  }
 
@@ -129,9 +153,15 @@ close(abierto = false): void {
     }
  }
 
+ seleccionarSlot(tiposlot){
+   this.actividad.setSlot(tiposlot);
+ }
+
  guardarEntrada(){
+
+   this.actividad.setFechaInicio(this.date2);
    console.log(this.actividad);
-   console.log(this.slots);
+
  }
 
 }

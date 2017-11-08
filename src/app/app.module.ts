@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-
+ import { NguiDatetimePickerModule } from '@ngui/datetime-picker';
 //Rutas
 import { app_routing } from './app.routes';
 //Servicios
@@ -35,7 +35,7 @@ import { ServicioComponent } from './components/modales/servicio/servicio.compon
     ServicioComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,NguiDatetimePickerModule,
     app_routing,
     HttpModule,
     FormsModule,

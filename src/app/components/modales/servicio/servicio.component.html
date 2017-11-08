@@ -11,7 +11,6 @@
              </div>
 
              <div class="modal-body">
-
                <form [formGroup]="forma" (ngSubmit)="guardarEntrada()">
 
                  <div class="form-group">
@@ -76,12 +75,12 @@
 
                   <div class="container">
 
-                   <div class="form-group row">
-                     <div class="col-xs-2">
-                      <label for="horaEntrada">Hora Entrada</label>
-                      <input type="time" class="form-control" id="horaEntrada" placeholder="12:00" formControlName="horaEntrada">
-                    </div>
-                   </div>
+                    <input [(ngModel)]="date2" ngui-datetime-picker
+                     hour="23"
+                     minute='59'
+                     close-on-select="false"
+                     formControlName="fecha"
+                     />
 
                  </div>
 
@@ -90,8 +89,8 @@
                    <div class="radio" style="padding: 20px 0; border-bottom: 1px solid #ccc;">
               				<h2>Slots para el tipo de vehiculo seleccionado</h2>
                       <div *ngFor="let slotipo of slotstipo" >
-                				<input type="radio" name="slot" [disabled]="!slotipo.ocupado" >
-                				<label for="slot" [ngStyle]="{'color': getFont(slotipo)} "> {{slotipo.numero}} / {{slotipo.nombre}}</label>
+                				<input type="radio" name="slot" [disabled]="!slotipo.ocupado" (change)="seleccionarSlot(slotipo)">
+                				<label for="slot" [ngStyle]="{'color': getFont(slotipo)}"> {{slotipo.numero}} / {{slotipo.tipoVehiculo.nombre}}</label>
                       </div>
               			</div>
 
