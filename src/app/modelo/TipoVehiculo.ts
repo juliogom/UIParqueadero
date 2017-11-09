@@ -5,7 +5,6 @@ export class TipoVehiculo{
   private nombre:string;
   private descripcion:string;
 
-
   public TipoVehiculo(id:number,descripcion:string,nombre:string){
     this.id=id;
     this.descripcion=descripcion;

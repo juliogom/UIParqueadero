@@ -23,12 +23,12 @@
                         </div>
 
                        <div class="col-sm-4">
-                         <button type="button" class="btn btn-default" data-dismiss="modal">Buscar</button>
+                         <button type="button" class="btn btn-default">Buscar</button>
                        </div>
                    </div>
 
                   <div [hidden]="btnCrearNuevoUsuario" >
-                    <button type="button" class="btn btn-danger">Crear Usuario</button>
+                    <button type="button" class="btn btn-danger" (click)="MostrarCrearUsuario()" data-dismiss="modal">Crear Usuario</button>
                   </div>
 
                  </div>
@@ -54,9 +54,12 @@
                          <input type="text" class="form-control" id="vehiculo" placeholder="vehiculo" formControlName="vehiculo" [(ngModel)]="queryVehiculos" (keyup)="filterVehiculos()">
                       </div>
 
-
                       <div class="col-sm-4">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Buscar</button>
+                        <button type="button" class="btn btn-default">Buscar</button>
+                      </div>
+
+                      <div [hidden]="btnCrearVehiculo">
+                        <button type="button" class="btn btn-danger" (click)="MostrarCrearVehiculo()" data-dismiss="modal">Crear Vehiculo</button>
                       </div>
 
                     </div>

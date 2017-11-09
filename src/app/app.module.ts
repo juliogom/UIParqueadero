@@ -8,7 +8,7 @@ import { app_routing } from './app.routes';
 //Servicios
 import { VehiculosService } from "./servicios/vehiculos.service";
 import { ModalService } from './servicios/modal.service';
-
+import { UsuariosService } from './servicios/Usuarios.service';
 //Componentes
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
@@ -20,7 +20,7 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { NuevoUsuarioComponent } from './components/usuario/nuevo-usuario/nuevo-usuario.component';
 import { ServicioComponent } from './components/modales/servicio/servicio.component';
-
+import { NuevoVehiculoComponent } from './components/vehiculo/nuevo-vehiculo/nuevo-vehiculo.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +32,8 @@ import { ServicioComponent } from './components/modales/servicio/servicio.compon
     UsuariosComponent,
     UsuarioComponent,
     NuevoUsuarioComponent,
-    ServicioComponent
+    ServicioComponent,
+    NuevoVehiculoComponent
   ],
   imports: [
     BrowserModule,NguiDatetimePickerModule,
@@ -41,7 +42,7 @@ import { ServicioComponent } from './components/modales/servicio/servicio.compon
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [VehiculosService,ModalService],
+  providers: [VehiculosService,ModalService,UsuariosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

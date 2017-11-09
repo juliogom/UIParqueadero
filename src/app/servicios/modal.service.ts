@@ -31,5 +31,15 @@ buscarModal(id:number){
   return this.modales[id];
 }
 
+cerrarrModal(id:number){
+    const modal=this.buscarModal(id);
+
+    if(modal){
+      modal.abierto=false;
+    }
+}
+
+
+
 
 }

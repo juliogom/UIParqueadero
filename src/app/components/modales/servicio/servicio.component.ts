@@ -11,6 +11,7 @@ import { VehiculosService } from '../../../servicios/vehiculos.service';
 import { SlotService } from '../../../servicios/Slot.service';
 import {Actividad} from '../../../modelo/Actividad';
 import {Slot} from '../../../modelo/Slot';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-servicio',
@@ -21,7 +22,7 @@ import {Slot} from '../../../modelo/Slot';
 
 export class ServicioComponent implements OnInit {
 
-  private forma:FormGroup;
+  public forma:FormGroup;
 
   public usuarios:Usuario[];
   public queryBuscador:string;
@@ -45,10 +46,11 @@ export class ServicioComponent implements OnInit {
   date2:Date ;
 
   constructor(public servicioModal:ModalService,public servicioUsuarios:UsuariosService,
-    public servicioVehiculos:VehiculosService, servicioSlot:SlotService) {
+    public servicioVehiculos:VehiculosService, servicioSlot:SlotService,private _router:Router) {
     this.filteredList=[];
     this.filteredListVehiculos=[];
     this.btnCrearNuevoUsuario=true;
+    this.btnCrearVehiculo=true;
     this.slots=[];
     this.slotstipo=[];
     this.actividad=new Actividad();
@@ -80,10 +82,12 @@ export class ServicioComponent implements OnInit {
     if (this.queryBuscador !== ""){
         this.filteredList = this.usuarios.filter(function(el){
 
-            if(el.nombre.toLowerCase().indexOf(this.queryBuscador.toLowerCase()) == -1){
+            let usuarioEncontrado=el.cedula.toLowerCase().indexOf(this.queryBuscador.toLowerCase());
+
+            if( usuarioEncontrado == -1){
               this.btnCrearNuevoUsuario=false;
             }
-            return el.cedula.toLowerCase().indexOf(this.queryBuscador.toLowerCase()) > -1;
+            return usuarioEncontrado > -1;
         }.bind(this));
     }else{
         this.filteredList = [];
@@ -93,16 +97,19 @@ export class ServicioComponent implements OnInit {
 
 filterVehiculos() {
   if (this.queryVehiculos !== ""){
-      this.filteredListVehiculos = this.vehiculos.filter(function(el){
+        this.filteredListVehiculos = this.vehiculos.filter(function(el){
 
-          if(el.nombre.toLowerCase().indexOf(this.queryVehiculos.toLowerCase()) == -1){
-            this.btnCrearVehiculo=false;
-          }
-          return el.placa.toLowerCase().indexOf(this.queryVehiculos.toLowerCase()) > -1;
+            let vehiculoEncontrado=el.nombre.toLowerCase().indexOf(this.queryVehiculos.toLowerCase());
 
-      }.bind(this));
+            if( vehiculoEncontrado == -1){
+              this.btnCrearVehiculo=false;
+            }
+            return vehiculoEncontrado > -1;
+
+        }.bind(this));
   }else{
       this.filteredListVehiculos = [];
+      this.btnCrearVehiculo=true;
   }
 }
 
@@ -121,6 +128,7 @@ selectVehiculo(item){
   this.filteredListVehiculos=[];
   this.btnCrearVehiculo=true;
 
+  //item.setCliente(this.usuarioServicio);
   item.cliente=this.usuarioServicio;
 
   if(item.tipoVehiculo.id == 1){
@@ -157,9 +165,20 @@ close(abierto = false): void {
    this.actividad.setSlot(tiposlot);
  }
 
+ MostrarCrearUsuario(){
+   this._router.navigate(['usuarios/nuevo-usuario']);
+ }
+
+MostrarCrearVehiculo(){
+
+  this._router.navigate(['vehiculos/nuevo-vehiculo']);
+}
+
+
  guardarEntrada(){
 
    this.actividad.setFechaInicio(this.date2);
+   //this.actividad.vehiculo.setCliente(this.actividad.cliente);
    console.log(this.actividad);
 
  }

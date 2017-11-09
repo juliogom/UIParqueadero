@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {VehiculosService,Vehiculo} from '../../servicios/vehiculos.service';
+import {VehiculosService} from '../../servicios/vehiculos.service';
 import { ModalService } from '../../servicios/modal.service';
 
 @Component({

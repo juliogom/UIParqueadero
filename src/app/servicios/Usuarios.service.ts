@@ -21,19 +21,19 @@ export class UsuariosService{
 
   addUsuario(usuario:Usuario){
 
-
     let usuarioGuardado:Usuario=null;
 
     let myHeaders = new Headers();
+    
 	  myHeaders.append('Content-Type', 'application/json');
 
     let options = new RequestOptions({ headers: myHeaders});
 
-     let obj=this.http.post('http://localhost:8082/parqueadero/usuarios/guardar',JSON.stringify(usuario),options).
-    map(res=> res.json())
-    .subscribe((respuesta:Usuario)=>{
-      usuarioGuardado=respuesta;
-    });
+    let obj=this.http.post('http://localhost:8082/parqueadero/usuarios/guardar',JSON.stringify(usuario),options).
+      map(res=> res.json())
+      .subscribe((respuesta:Usuario)=>{
+        usuarioGuardado=respuesta;
+      });
 
     if(obj !=null){
       return usuario;

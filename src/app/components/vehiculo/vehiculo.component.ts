@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 
-import {VehiculosService,Vehiculo} from '../../servicios/vehiculos.service';
+import {VehiculosService} from '../../servicios/vehiculos.service';
+
+import {Vehiculo} from '../../modelo/Vehiculo';
 
 @Component({
   selector: 'app-vehiculo',
@@ -11,7 +13,7 @@ import {VehiculosService,Vehiculo} from '../../servicios/vehiculos.service';
 
 export class VehiculoComponent {
 
-  vehiculo:any={};
+  vehiculo:Vehiculo;
 
   constructor(private activatedRoute:ActivatedRoute,private _vehiculosServicio: VehiculosService) {
 
